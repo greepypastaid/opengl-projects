@@ -6,7 +6,7 @@
 - Learning About Triangles 
 - Learning About Square
 - Learning About Creating House Graphic
-- Learning basic Coloring
+- Learning About How To Coloring Using Opengl
 
 ## Licence
 MIT Licence, see more at LICENCE

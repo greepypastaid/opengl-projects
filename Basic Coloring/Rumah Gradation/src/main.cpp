@@ -41,7 +41,7 @@ int main() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Buat jendela 800 x 600
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Bikin Segitiga Gradasi", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(800, 600, "Bikin Rumah Gradasi AHAY ASOY", NULL, NULL);
     if (window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
@@ -77,22 +77,44 @@ int main() {
     // --- DATA VERTEX: untuk tiap vertex sediakan posisi (x,y,z) dan warna (r,g,b) ---
     // Struktur tiap vertex: [pos.x, pos.y, pos.z, col.r, col.g, col.b]
     float vertices[] = {
-        // posisi            // warna
-        -0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.5f, 
-         0.5f, -0.5f, 0.0f,   1.0f, 0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f            
+        // Tembok
+        // Posisi             // Warna
+        0.6f,  0.2f, 0.0f,    0.0f, 1.0f, 0.0f, // 0: Atas kanan
+        0.6f, -0.6f, 0.0f,    1.0f, 1.0f, 1.0f, // 1: Bawah kanan
+        -0.6f, -0.6f, 0.0f,   0.9f, 1.0f, 0.3f, // 2: Bawah kiri
+        -0.6f,  0.2f, 0.0f,   0.0f, 0.1f, 0.5f, // 3: Atas kiri
+
+        // Atap (Warna Cokelat)
+        // Posisi             // Warna
+        0.0f,  0.7f, 0.0f,    0.6f, 0.5f, 0.7f, // 4: Atap atas
+        -0.6f,  0.2f, 0.0f,   0.4f, 0.9f, 0.4f, // 5: Atap kiri bawah (sama dengan titik 3)
+        0.6f,  0.2f, 0.0f,    0.2f, 0.1f, 0.21f  // 6: Atap kanan bawah (sama dengan titik 0)    
+    };
+
+    unsigned int indices[] = {
+        // Indeks untuk Tembok
+        0, 1, 2, // Segitiga pertama
+        2, 3, 0, // Segitiga kedua
+        
+        // Indeks untuk Atap
+        5, 6, 4  // Atap
     };
 
     // Buat dan atur VBO dan VAO
-    unsigned int VBO, VAO;
+    unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
 
     glBindVertexArray(VAO);
 
     // Bind VBO dan kirim data
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    // Bind EBO dan masukkan data indeks
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // Atur attribute pointer untuk posisi (location = 0)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
@@ -135,7 +157,7 @@ int main() {
 
         // Bind VAO dan draw
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0); // Menggambar 6 indeks
 
         // Swap buffer dan poll events
         glfwSwapBuffers(window);
@@ -145,6 +167,7 @@ int main() {
     // Clean up
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
     glfwTerminate();
     return 0;
