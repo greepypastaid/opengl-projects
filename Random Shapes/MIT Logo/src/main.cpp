@@ -193,7 +193,7 @@ int main() {
     // RENDER LOOP (LOOP UTAMA PROGRAM)
     while (!glfwWindowShouldClose(window)) {
         // Hapus layar dan isi dengan warna
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // Setting warna sir jadi warna biru
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // Setting warna sir jadi warna yg laen bebas deh intinya bg
         glClear(GL_COLOR_BUFFER_BIT); // Hapus layar belakang dengan warna yang di-set tadi
 
         // Pkaai shaddderrr
