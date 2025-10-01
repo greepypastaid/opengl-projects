@@ -9,6 +9,7 @@ A small collection of beginner-friendly OpenGL exercises focused on basic shapes
 - Simple House — compose basic primitives into a scene and apply coloring.
 - Coloring Techniques — experiments with vertex/fragment shaders for color.
 - MIT Logo — exercise combining shapes to form a logo.
+- Hewlett Packard Logo - Excersice combining shape from a logo.
 
 ## Key features
 - Per-vertex colors producing smooth color gradients.
