@@ -10,6 +10,7 @@ A small collection of beginner-friendly OpenGL exercises focused on basic shapes
 - Coloring Techniques — experiments with vertex/fragment shaders for color.
 - MIT Logo — exercise combining shapes to form a logo.
 - Hewlett Packard Logo - Excersice combining shape from a logo.
+- Wolf Logo - Advanced combining shape exercise
 
 ## Key features
 - Per-vertex colors producing smooth color gradients.
